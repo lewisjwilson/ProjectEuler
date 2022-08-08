@@ -1,13 +1,26 @@
 import math
 
 
-def powersOfBase(base, exponent):
-    powers = []
+def primeFactors(n):
+    prime_factors = []
+    d = 2
+    while n > 1:
+        while n % d == 0:
+            prime_factors.append(d)
+            n /= d
+        d = d + 1
+    return prime_factors
 
-    return factors
 
+exponent = 24
+base = 6
 
-exponent = 1000
-base = 2
+pf = primeFactors(exponent)
+print(pf)
 
-print(powersOfBase(base, exponent))
+ans = 1
+for x in pf:
+    ans *= base ** x
+    print(ans)
+
+print(ans)
