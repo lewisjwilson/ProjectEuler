@@ -6,6 +6,7 @@
 # Solution - finding prime factors to enable efficient computation.
 # e.g. 6^24 = ((((6^2)^2)^2)^3)...RHS more efficient than LHS
 # [Prime Factors of 24 are 2, 2, 2 and 3] - store these as a list and iterate
+# This code works for any base and exponent
 
 
 import math
