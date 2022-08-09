@@ -29,7 +29,7 @@ def calcExp(base, prime_factors):
 exponent = 1000
 base = 2
 pf = primeFactors(exponent)
-ans = calcExp(2, pf)
+ans = calcExp(base, pf)
 
 sum_list = [int(x) for x in str(ans)]
 print(sum(sum_list))
