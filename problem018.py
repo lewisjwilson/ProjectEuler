@@ -25,11 +25,13 @@ for x in range(len(tri)):
     path.append(idx)
     
     if x < len(tri)-1 :
-        if tri[x+1][idx] < tri[x+1][idx+1]:
+        cur_idx = tri[x+1][idx]
+        next_idx = tri[x+1][idx+1]
+        item = max(cur_idx, next_idx)
+        
+        if cur_idx < next_idx:
             idx = idx+1
-            item = max(tri[x+1][idx-1], tri[x+1][idx])
-        else:
-            item = max(tri[x+1][idx], tri[x+1][idx+1])
+            
     
 print(items)    
 print(path)
