@@ -12,4 +12,25 @@ tri = [[75],
 [70,11,33,28,77,73,17,78,39,68,17,57],
 [91,71,52,38,17,14,91,43,58,50,27,29,48],
 [63,66,4,68,89,53,67,30,73,16,69,87,40,31],
-[04,62,98,27,23,9,70,98,73,93,38,53,60,4,23]]
+[4,62,98,27,23,9,70,98,73,93,38,53,60,4,23]]
+
+items = []
+path = []
+
+idx = 0
+item = tri[0][0]
+
+for x in range(len(tri)):
+    items.append(item)
+    path.append(idx)
+    
+    if x < len(tri)-1 :
+        if tri[x+1][idx] < tri[x+1][idx+1]:
+            idx = idx+1
+            item = max(tri[x+1][idx-1], tri[x+1][idx])
+        else:
+            item = max(tri[x+1][idx], tri[x+1][idx+1])
+    
+print(items)    
+print(path)
+print(sum(items))
