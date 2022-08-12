@@ -1,5 +1,3 @@
-# A* Algorithm
-
 tri = [[75],
 [95,64],
 [17,47,82],
@@ -16,16 +14,25 @@ tri = [[75],
 [63,66,4,68,89,53,67,30,73,16,69,87,40,31],
 [4,62,98,27,23,9,70,98,73,93,38,53,60,4,23]]
 
-max_val = 0 # maximum ESTIMATED distance between first and end node (most likely higher)
+items = []
+path = []
+
+idx = 0
+item = tri[0][0]
+
 for x in range(len(tri)):
-    max_val += max(tri[x])
-print(max_val)
-
-f = 0 # total cost of the node (f = h + g)
-g = 0 # distance between start node and current node
-h = 0 # heuristic (estimated distance from current to end node)
-
-nodes = []
-nodes.append(tri[0][0])
-
-print(nodes)
+    items.append(item)
+    path.append(idx)
+    
+    if x < len(tri)-1 :
+        cur_idx = tri[x+1][idx]
+        next_idx = tri[x+1][idx+1]
+        item = max(cur_idx, next_idx)
+        
+        if cur_idx < next_idx:
+            idx = idx+1
+            
+    
+print(items)    
+print(path)
+print(sum(items))
