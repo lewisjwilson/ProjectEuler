@@ -1,5 +1,6 @@
 # A* Algorithm - https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2
 
+
 tri = [[75],
        [95, 64],
        [17, 47, 82],
