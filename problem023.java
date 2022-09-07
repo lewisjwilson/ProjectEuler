@@ -35,7 +35,7 @@ class problem023 {
             set.add(element);
         }
     
-        //Iterate through the array and find if (n - element) exists in set
+        //Iterate through the array and find if (x - elem) exists in set
         for (int element : arr) {
           if(set.contains(n - element)){
               return true;
@@ -57,11 +57,9 @@ class problem023 {
             if(divSum > i){
                 abun.add(i);
             }
-        }
-        
-        int[] abunArr = abun.stream().mapToInt(i -> i).toArray();
-        
-        for(int i=1 ; i <= 28123 ; i++){
+            
+            int[] abunArr = abun.stream().mapToInt(val -> val).toArray();
+            
             if(!sumInArr(i, abunArr)){
                 nonAbundantSum += i;
             }
