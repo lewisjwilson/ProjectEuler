@@ -33,7 +33,6 @@ public class problem019 {
             //System.out.println(y);
             for(int m = 0 ; m < 12 ; m++){
                 LocalDate first = LocalDate.parse(String.valueOf(y) + "-" + months[m] + "-01");
-                boolean sundayFound = false;
                 if (first.getDayOfWeek() == DayOfWeek.SUNDAY){
                     sundays++;
                 }
