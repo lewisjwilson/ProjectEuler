@@ -21,20 +21,25 @@ class problem024{
         String temp = "012";
         perms.add(temp);
         
-        while(temp != "210"){
+        while(temp.equals("120") == false){
             String final_char = temp.substring(l-1, l);
-            System.out.println("Temp: " + temp);
+            
             System.out.println("Final: " + final_char);
             
-
             String oldTemp = temp;
+            System.out.println("OldTemp: " + oldTemp);
+
 
             int temp_idx = l-1;
+            boolean broken = false;
             while(temp_idx >= 1){   
                 String temp_char = temp.substring(temp_idx-1, temp_idx);
                 temp = swap(temp, final_char, temp_char);
+                System.out.println("Temp: " + temp);
                 if(Integer.parseInt(temp) > Integer.parseInt(oldTemp)){
                     perms.add(temp);
+                    System.out.println("Added " + temp);
+                    broken = true;
                     break;
                 } else {
                     temp_idx--;
