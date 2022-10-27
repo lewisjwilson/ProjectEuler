@@ -21,13 +21,10 @@
 # Putting it together, we have all diagonal values when adding to a list. (Initialising with 1
 # and iterating from 3, to 1001.
 
-diags = [1]
+out = 1
 for num in range(3, 1002, 2):
     sq = num*num
     minus = num-1
-    diags.append(sq)
-    diags.append(sq-minus)
-    diags.append(sq-2*minus)
-    diags.append(sq-3*minus)
+    out += 4*sq - 6*minus
  
-print(sum(diags))
+print(out)
