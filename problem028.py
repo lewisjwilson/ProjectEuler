@@ -19,7 +19,7 @@
 # That is, top right: square, top left = square - odd_num, bottom_left = square - 2(odd_num), 
 # bottom_right = square - 3(odd_num)
 # Putting it together, we have all diagonal values when adding to a list. (Initialising with 1
-# and iterating from 3, to 1002.
+# and iterating from 3, to 1001.
 
 diags = [1]
 for num in range(3, 1002, 2):
