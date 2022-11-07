@@ -29,7 +29,6 @@ from itertools import permutations
 nums = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 perms = list(permutations(nums))
 results = set()
-s = 0
 
 for perm in perms:
     two = int(perm[0] + perm[1])
@@ -37,7 +36,6 @@ for perm in perms:
     res = int(perm[5] + perm[6] + perm[7] + perm[8])
     if two * three == res:
         results.add(res)
-        s += res
         print(two, "x", three, "=", res)
     
     one = int(perm[0])
@@ -45,7 +43,6 @@ for perm in perms:
     res = int(perm[5] + perm[6] + perm[7] + perm[8])
     if (one * four == res):
         results.add(res)
-        s += res
         print(one, "x", four, "=", res)
     
 print("Sum of products:", sum(results))
