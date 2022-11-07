@@ -16,7 +16,7 @@ from itertools import permutations
 # print("Max 2x2 nums (98x76):", 98*76)
 # print("Min: 7, Max 8 - 2x2 Not Applicable.")
 # print("\nMin 2x3 nums (12x345):", 12*345)
-# print("Max 2x3 nums (98x765):", 98*765)
+# print("Max 2x3 nums (97x865):", 97*865)
 # print("Min: 9, Max 10 - 2x3 Somewhat Applicable.")
 # print("\nMin 3x3 nums (125x234):", 125*234)
 # print("Min: 11 - 3x3 Not Applicable.")
