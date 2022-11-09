@@ -7,14 +7,10 @@
 # Solution
 
 def isPalindrome(n):
-    if(str(n) == str(n)[::-1]):
-        return True
-    return False
+    return str(n) == str(n)[::-1]
         
-n = 1000000
 sum = 0
-for i in range(1, n):
-    # binary string includes "0b", so from index 2 onwards
+for i in range(1, 1000000):
     if(isPalindrome(i) and isPalindrome(bin(i)[2:])):
         sum += i
         print(i, "and", bin(i)[2:], "are palindromes.")
