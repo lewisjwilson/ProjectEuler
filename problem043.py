@@ -17,19 +17,13 @@
 from itertools import permutations 
 
 def check(d):
-    if((int(d[0]+d[1]+d[2])%2!=0)):
-        return False
-    if((int(d[2]+d[3]+d[4])%3!=0)):
-        return False
-    if((int(d[3]+d[4]+d[5])%5!=0)):
-        return False
-    if((int(d[4]+d[5]+d[6])%7!=0)):
-        return False
-    if((int(d[5]+d[6]+d[7])%11!=0)):
-        return False
-    if((int(d[6]+d[7]+d[8])%13!=0)):
-        return False
-    if((int(d[7]+d[8]+d[9])%17!=0)):
+    if((int(d[0]+d[1]+d[2])%2!=0) or \
+       (int(d[2]+d[3]+d[4])%3!=0) or \
+       (int(d[3]+d[4]+d[5])%5!=0) or \
+       (int(d[4]+d[5]+d[6])%7!=0) or \
+       (int(d[5]+d[6]+d[7])%11!=0) or \
+       (int(d[6]+d[7]+d[8])%13!=0) or \
+       (int(d[7]+d[8]+d[9])%17!=0)):
         return False
     return True
     
