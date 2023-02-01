@@ -17,7 +17,7 @@
 from itertools import permutations 
 
 def check(d):
-    if((int(d[0]+d[1]+d[2])%2!=0) or \
+    if((int(d[1]+d[2]+d[3])%2!=0) or \
        (int(d[2]+d[3]+d[4])%3!=0) or \
        (int(d[3]+d[4]+d[5])%5!=0) or \
        (int(d[4]+d[5]+d[6])%7!=0) or \
@@ -33,8 +33,7 @@ valid = list()
 
 for p in perm:
     
-    d = list(p)
-    d = [str(x) for x in d]
+    d = [str(x) for x in p]
     
     if(check(d)):
         n = int(d[0]+d[1]+d[2]+d[3]+d[4]+d[5]+d[6]+d[7]+d[8]+d[9])
