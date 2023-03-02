@@ -63,13 +63,10 @@ class Triangle {
                     // As a and b will appear twice in the same combination,
                     // We add 0.5 rather than 1.
                     pVals.put(p, pVals.get(p)+0.5);
-                    //System.out.print("a: " + t.getA() + ", b:  " + t.getB() + ", c:  " + t.getC() + ", p: " + getPerimeter(t) + "\n");
                 }
             }
         }
-        
-        //System.out.println("Number of solutions for p=120: " + pVals.get(1000.0));
-        
+                
         int maxP = 0;
         double maxVal = 0.0;
         
