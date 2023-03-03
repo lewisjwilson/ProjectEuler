@@ -1,6 +1,6 @@
 import java.util.*;
 
-class HelloWorld {
+class Problem049 {
     
     public static boolean isPerm(int a, int b){
         Set<Integer> aCheck = new HashSet<Integer>();
