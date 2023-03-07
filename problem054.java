@@ -1,11 +1,16 @@
-import java.math.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 class Problem054 {
     
     public static Hashtable<String, Integer> numbers = new Hashtable<String, Integer>();
-    
     public static Hashtable<String, Integer> winTypes = new Hashtable<String, Integer>();
+    public static int p1Wins = 0;
+    public static int p2Wins = 0;
+
     
     public static void populateNumbers(){
         numbers.put("2", 2);
@@ -78,8 +83,8 @@ class Problem054 {
         int card4 = Collections.frequency(v, v.get(3));
         int card5 = Collections.frequency(v, v.get(4));
         
-        System.out.println(v);
-        System.out.println(s);
+        // System.out.println(v);
+        // System.out.println(s);
         
         if( s.size() == 1 && v.containsAll(topFive) ){
             return "Royal Flush";
@@ -103,29 +108,74 @@ class Problem054 {
             return "High Card";
         }
     }
-    
-    public static void main(String[] args) {
-        
-        populateNumbers();
-        populateWinTypes();
-        
-        String cards[] = "8C TS KC 9H 4S 7D 2S 5D 3S AC".split(" ");
-        //String cards[] = "3H TH 6S 4H 7D 7D 2S 5D 3S AC".split(" ");
-        List<String> cardsP1 = Arrays.asList(cards).subList(0, 5);
-        List<String> cardsP2 = Arrays.asList(cards).subList(5, 10);
-        
-        String p1Result = calculateWinType(cardsP1);
-        String p2Result = calculateWinType(cardsP2);
-        
-        int p1Score = winTypes.get(p1Result);
-        int p2Score = winTypes.get(p2Result);
+
+    public static void scoring(String p1Res, String p2Res, List<String> cardsP1, List<String> cardsP2){
+        int p1Score = winTypes.get(p1Res);
+        int p2Score = winTypes.get(p2Res);
+
+        System.out.println("P1: " + p1Res + ", P2: " + p2Res);
         
         if(p1Score == p2Score){
-            // calculute scores on card values
+            List<Integer> valsP1 = new ArrayList<Integer>();
+            List<Integer> valsP2 = new ArrayList<Integer>();
+            for(String c : cardsP1){
+                valsP1.add(numbers.get(c.substring(0, 1)));
+            }
+
+            for(String c : cardsP2){
+                valsP2.add(numbers.get(c.substring(0, 1)));
+            }
+            
+            int p1Max = Collections.max(valsP1);
+            int p2Max = Collections.max(valsP2);
+            if(p1Max > p2Max){
+                p1Wins++;
+                System.out.println("P1 is the Winner!");
+            } else {
+                p2Wins++;
+                System.out.println("P2 is the Winner!");
+            }
+
+        } else {
+            if(p1Score>p2Score){
+                p1Wins++;
+                System.out.println("P1 is the Winner!");
+            } else {
+                p2Wins++;
+                System.out.println("P2 is the Winner!");
+            }
         }
+    }
+    
+    public static void main(String[] args) throws IOException {
+
+        populateNumbers();
+        populateWinTypes();
+
+        // Reading file
+        FileInputStream fstream = new FileInputStream("C:\\Users\\Lewis\\Downloads\\p054_poker.txt");
+        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+        String line;
+
+        //Read File Line By Line
+        while ((line = br.readLine()) != null)   {
+            String cards[] = line.split(" ");
+            //String cards[] = "3H TH 6S 4H 7D 7D 2S 5D 3S AC".split(" ");
+            List<String> cardsP1 = Arrays.asList(cards).subList(0, 5);
+            List<String> cardsP2 = Arrays.asList(cards).subList(5, 10);
+            
+            String p1Result = calculateWinType(cardsP1);
+            String p2Result = calculateWinType(cardsP2);
+            scoring(p1Result, p2Result, cardsP1, cardsP2);
+        }
+
+        //Close the input stream
+        fstream.close();
+
+        System.out.println("P1 wins: " + p1Wins);
         
-        System.out.println("P1: " + p1Score);
-        System.out.println("P2: " + p2Score);
         
     }
+
 }

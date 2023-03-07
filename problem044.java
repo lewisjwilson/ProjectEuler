@@ -1,5 +1,4 @@
 import java.util.*;
-import java.math.*;
 
 class Pentagon {
     
@@ -16,8 +15,6 @@ class Pentagon {
         }
         //System.out.println("Pentagonals: " + pentagonals.toString());
         
-        int savedDiff = 0;
-        
         boolean flag = false;
         
         for(Integer pj : pentagonals){
@@ -27,7 +24,6 @@ class Pentagon {
                     int pDiff = pk - pj;
                     if(pentagonals.contains(pSum) && pentagonals.contains(pDiff)){
                         flag = true;
-                        savedDiff = pDiff;
                         System.out.print(pj + " is the " + pentagonals.indexOf(pj) + "th pentagonal number" + "\n");
                         System.out.print(pk + " is the " + pentagonals.indexOf(pk) + "th pentagonal number" + "\n");
                         System.out.print(pk + " + " + pj + " = " + pSum + ", the " + pentagonals.indexOf(pSum) + "th pentagonal number, and\n");

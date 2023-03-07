@@ -67,8 +67,6 @@ class Goldbach {
                 for(Integer p : subPrimes){
                     for(Integer s : subSquares){
                         if(p + 2*s == i){
-                            savedP = p;
-                            savedS = s;
                             flag = true;
                             break;
                         }
@@ -76,7 +74,7 @@ class Goldbach {
                 }
                 
                 if(!flag){
-                    System.out.print(i + " is the smallest odd composite number that makes the Goldbach conjecture false!"");
+                    System.out.print(i + " is the smallest odd composite number that makes the Goldbach conjecture false!");
                     break;
                 }
             }

@@ -1,5 +1,4 @@
 import java.util.*;
-import java.math.*;
 
 class Problem047 {
     

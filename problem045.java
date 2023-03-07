@@ -1,5 +1,3 @@
-import java.math.*;
-
 class Problem045 {
     
     // T = n(n+1)/2 --> solving for n. If n is an integer, is Triangle
