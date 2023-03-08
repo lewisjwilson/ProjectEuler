@@ -83,8 +83,8 @@ class Problem054 {
         int card4 = Collections.frequency(v, v.get(3));
         int card5 = Collections.frequency(v, v.get(4));
         
-        // System.out.println(v);
-        // System.out.println(s);
+        //System.out.println(v);
+        //System.out.println(s);
         
         if( s.size() == 1 && v.containsAll(topFive) ){
             return "Royal Flush";
@@ -113,7 +113,8 @@ class Problem054 {
         int p1Score = winTypes.get(p1Res);
         int p2Score = winTypes.get(p2Res);
 
-        System.out.println("P1: " + p1Res + ", P2: " + p2Res);
+        //System.out.println("P1: " + p1Res + " " + cardsP1);
+        //System.out.println("P2: " + p2Res + " " + cardsP2);
         
         if(p1Score == p2Score){
             List<Integer> valsP1 = new ArrayList<Integer>();
@@ -126,23 +127,44 @@ class Problem054 {
                 valsP2.add(numbers.get(c.substring(0, 1)));
             }
             
-            int p1Max = Collections.max(valsP1);
-            int p2Max = Collections.max(valsP2);
-            if(p1Max > p2Max){
+            int p1High = 0;
+            int p2High = 0;
+            
+            if(p1Score == 1){
+                p1High = Collections.max(valsP1);
+                p2High = Collections.max(valsP2);
+                
+            } else {
+                for(int i = 0; i<valsP1.size(); i++){
+                    if(Collections.frequency(valsP1, valsP1.get(i)) == 2){
+                        p1High = valsP1.get(i);
+                        break;
+                    }
+                }
+                
+                for(int i = 0; i<valsP2.size(); i++){
+                    if(Collections.frequency(valsP2, valsP2.get(i)) == 2){
+                        p2High = valsP2.get(i);
+                        break;
+                    }
+                }
+            }
+            
+            if(p1High > p2High){
                 p1Wins++;
-                System.out.println("P1 is the Winner!");
+                //System.out.println("P1 is the Winner!");
             } else {
                 p2Wins++;
-                System.out.println("P2 is the Winner!");
+                //System.out.println("P2 is the Winner!");
             }
 
         } else {
             if(p1Score>p2Score){
                 p1Wins++;
-                System.out.println("P1 is the Winner!");
+                //System.out.println("P1 is the Winner!");
             } else {
                 p2Wins++;
-                System.out.println("P2 is the Winner!");
+                //System.out.println("P2 is the Winner!");
             }
         }
     }
@@ -152,16 +174,8 @@ class Problem054 {
         populateNumbers();
         populateWinTypes();
 
-        // Reading file
-        FileInputStream fstream = new FileInputStream("C:\\Users\\Lewis\\Downloads\\p054_poker.txt");
-        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
-        String line;
-
-        //Read File Line By Line
-        while ((line = br.readLine()) != null)   {
-            String cards[] = line.split(" ");
-            //String cards[] = "3H TH 6S 4H 7D 7D 2S 5D 3S AC".split(" ");
+        for(int line = 0; line<data.length; line++) {
+            String cards[] = data[line].split(" ");
             List<String> cardsP1 = Arrays.asList(cards).subList(0, 5);
             List<String> cardsP2 = Arrays.asList(cards).subList(5, 10);
             
@@ -170,12 +184,18 @@ class Problem054 {
             scoring(p1Result, p2Result, cardsP1, cardsP2);
         }
 
-        //Close the input stream
-        fstream.close();
 
         System.out.println("P1 wins: " + p1Wins);
         
         
     }
+    
+    public static String[] data = new String[]{
+        "8C TS KC 9H 4S 7D 2S 5D 3S AC",
+        "...",
+        "...",
+        "...",
+        "AS KD 3D JD 8H 7C 8C 5C QD 6C"
+    };
 
 }
