@@ -1,3 +1,5 @@
+// This is O(n^2) which is way to slow and unacceptable
+
 import kotlin.math.*
 import java.math.*
 
