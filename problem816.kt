@@ -23,7 +23,7 @@ fun main() {
     val pNArray = ArrayList<Pair<Int, Int>>()
     
     // Starting at 0,  k = n+1
-    val k = 15000
+    val k = 15
     
     // This is s0
     var sN = 290797
@@ -31,7 +31,7 @@ fun main() {
     for (i in 1..k){
     	var sN_1 = generateNext(sN)
         pNArray.add(Pair(sN, sN_1))
-        sN = sN_1
+        sN = generateNext(sN_1)
     }
     
     var smallest = Double.MAX_VALUE
@@ -39,12 +39,12 @@ fun main() {
     for (pair1 in pNArray){
         for (pair2 in pNArray){
             val dist = distance(pair1, pair2)
-            if (dist == 0.0) { continue }
+           	if (dist == 0.0) { continue }
             if (dist < smallest){
                 smallest = dist
-				println(smallest)
+                println("$smallest")
             }
-                        
+
         }
     }
     
