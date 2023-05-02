@@ -1,116 +1,54 @@
+/*
+Starting with 1 and spiralling anticlockwise in the following way, a square spiral with side length 7 is formed.
+
+37 36 35 34 33 32 31
+38 17 16 15 14 13 30
+39 18  5  4  3 12 29
+40 19  6  1  2 11 28
+41 20  7  8  9 10 27
+42 21 22 23 24 25 26
+43 44 45 46 47 48 49
+
+It is interesting to note that the odd squares lie along the bottom right diagonal, 
+but what is more interesting is that 8 out of the 13 numbers lying along both diagonals are prime; 
+that is, a ratio of 8/13 ≈ 62%.
+
+If one complete new layer is wrapped around the spiral above, a square spiral with side length 9 will be formed. 
+If this process is continued, what is the side length of the square spiral for which the ratio of primes along both 
+diagonals first falls below 10%?
+*/
+
 import java.util.*
 import kotlin.math.*
 
-var oddSquares = ArrayList<Int>()
 
-fun generateSquares(upToNthSquare: Int) {
-    for (i in 1..upToNthSquare) {
-        if(i%2 != 0){
-         oddSquares.add(i*i)
+
+fun main() {
+
+    var primes = 0;
+    var nonPrimes = 0;
+
+    val upTo = 100;
+
+    for(i in 1..upTo){
+        if(isPrime(i)){
+            primes++;
+        } else {
+            nonPrimes++;
         }
     }
+
+    print("$primes / ${primes+nonPrimes}")
 }
 
-fun isPrime(num: Int): Boolean{
-    if(num < 3){ return false }
+fun isPrime(n: Int): Boolean {
     var flag = false
-    for (i in 2..num / 2) {
-        if (num % i == 0) {
+    if (n < 2) { return flag }
+    for (i in 2..n / 2) {
+        if (n % i == 0) {
             flag = true
             break
         }
     }
-
-    if (!flag){
-        return true
-    }
-    return false
-}
-
-fun generateSpiral(upToNumber: Int): Double {
-    
-    //var spiral = mutableListOf<MutableList<Int>>()    
-    var layers = ceil(upToNumber.toDouble().pow(0.5)).toInt()
-    if(layers % 2 == 0){
-        layers++
-    }
-    val midpoint = floor(layers/2.0).toInt()
-    
-    val numsOnDiagonal = layers*2-1
-    var primeCount = 0
-    
-    
-    // Populating the spiral with empty lists
-    for (i in 1..layers) {
-        //spiral.add(MutableList(layers){0})
-    }
-    
-    var row = midpoint
-    var col = midpoint
-    var increment = 1
-    var direction = "u"
-    var whichSquare = 3
-    
-    //spiral[row][col] = 1
-    col++
-    //spiral[row][col] = 2
-        
-    for (i in 3..upToNumber) {
-        
-        //println("dir: $direction")
-        when(direction) {
-            "r" -> col++
-            "u" -> row--
-            "l" -> col--
-            "d" -> row++
-        }
-        //spiral[row][col] = i
-        
-        //println("$col $row")
-        //println(spiral)
-        
-        if(col == whichSquare+midpoint-1-increment && row == midpoint-increment) {
-            if(isPrime(i)){ primeCount++ }
-            direction = "l"
-        } else if (col == midpoint-increment && row == midpoint-increment){
-            if(isPrime(i)){ primeCount++ }
-            direction = "d"
-        } else if (col == midpoint-increment && row == whichSquare+midpoint-1-increment){
-            if(isPrime(i)){ primeCount++ }
-            direction = "r"
-        } else if (col == whichSquare+midpoint-increment){
-            if(isPrime(i)){ primeCount++ }
-            whichSquare+=2
-            increment++
-            direction = "u"
-        }
-          
-    }
-    
-    val primePercentage = (primeCount.toDouble()/numsOnDiagonal.toDouble())*100
-    
-    println("${primeCount}/${numsOnDiagonal} (~$primePercentage%)")
-    return primePercentage 
-    
-    //for (layer in spiral) {
-        //println(layer)
-    //}
-        
-}
-
-fun main() {
-    val generateTo = 1000000
-    generateSquares(generateTo)
-    val countOfSquares = oddSquares.size-1
-    
-    for (i in 1..countOfSquares) {
-        val primePercentage = generateSpiral(oddSquares.get(i))
-        println("")
-        if(primePercentage < 10){
-            println(ceil(oddSquares.get(i).toDouble().pow(0.5)).toInt())
-            break
-        }
-    }
-    
-    
+    return !flag
 }
