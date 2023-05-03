@@ -25,21 +25,66 @@ import kotlin.math.*
 
 fun main() {
 
+    // Initial values (skipping 1 but adding here as non prime)
     var primes = 0;
-    var nonPrimes = 0;
+    var nonPrimes = 1;
+    var ratio = 0.0;
 
-    val upTo = 100;
+    val ratioLessThan = 10;
 
-    for(i in 1..upTo){
-        if(isPrime(i)){
-            primes++;
-        } else {
-            nonPrimes++;
+    var layer = 1;
+    var layerDist = 2;
+
+    var currentVal = 1;
+    var target = nextOddSquare(currentVal);
+
+    // A bit hacky but to eliminate the possibility of early termination
+    while(ratio >= ratioLessThan || ratio == 0.0 ){
+
+        var diagonal = false
+
+        when (currentVal) {
+            // In the event that the current value is an odd square (bottom right)
+            target -> {
+                layer++;
+                layerDist += 2;
+                target = nextOddSquare(currentVal);
+                diagonal = true
+            }
+            // In the event that the current value is the target - layerDist (bottom left)
+            target - layerDist -> diagonal = true
+
+            // In the event that the current value is the target - 2*layerDist (top left)
+            target - 2*layerDist -> diagonal = true
+
+            // In the event that the current value is the target - 3*layerDist (top right)
+            target - 3*layerDist -> diagonal = true
         }
+            
+
+        // Checking primality
+        if(diagonal){
+            when(isPrime(currentVal)){
+                true -> primes++
+                false -> nonPrimes++
+            }
+        } 
+
+        ratio = (primes.toDouble()/(nonPrimes+primes))*100;
+        currentVal++
     }
 
-    print("$primes / ${primes+nonPrimes}")
+    println("Primes: $primes")
+    println("Total: ${primes+nonPrimes}")
+    println("Ratio: $ratio")
+    println("Side Length: ${sqrt(target.toDouble())-2}")
 }
+
+
+fun nextOddSquare(prev: Int): Int {
+    return ((sqrt(prev.toDouble())+2)*(sqrt(prev.toDouble())+2)).toInt()
+}
+
 
 fun isPrime(n: Int): Boolean {
     var flag = false
